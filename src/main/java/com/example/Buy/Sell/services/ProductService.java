@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Service
 public class ProductService {
@@ -13,7 +14,7 @@ public class ProductService {
 
     {
         products.add(new Product(++ID, "PlayStation 5", "Simple description", 67000, "Krasnoyarsk", "tomas"));
-        products.add(new Product(++ID, "Iphone 8", "Simple description", 24000, "Moscow", "artmcoder"));
+        products.add(new Product(++ID, "Iphone 8", "Simple description", 24000, "Moscow", "Amigo"));
     }
 
     public List<Product> listProducts() { return products; }
@@ -24,12 +25,12 @@ public class ProductService {
     }
 
     public void deleteProduct(Long id) {
-        products.removeIf(product -> product.getId().equals(id));
+        products.removeIf(product -> Objects.equals(product.getId(), id));
     }
 
     public Product getProductById(Long id) {
         for (Product product : products) {
-            if (product.getId().equals(id)) return product;
+            if (Objects.equals(product.getId(), id)) return product;
         }
         return null;
     }
